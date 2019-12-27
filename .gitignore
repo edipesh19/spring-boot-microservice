@@ -1,0 +1,29 @@
+# Files created by Gradle auto-import
+.idea/modules.xml
+.idea/*.iml
+.idea/modules
+
+.idea/libraries
+.idea/**
+# Internal build dirs, shouldn't happen
+**/out
+*.iml
+**/logs
+*.log
+*.hprof
+.gradle
+build
+
+# Eclipse related files
+
+**/.settings/
+**/.project
+**/.classpath
+**/bin
+
+# IntelliJ related files
+
+# User-specific things
+.idea/**/workspace.xml
+.idea/**/usage.statistics.xml
+.idea/**/tasks.xml
