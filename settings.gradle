@@ -1,3 +1,6 @@
 rootProject.name = 'spring-boot-microservice'
-include 'spring-boot-example'
+include 'limit-serv'
+//include ':limit-serv'
+//project(':limit-serv').projectDir = new File('limit-serv')
+include 'config-server'
 
