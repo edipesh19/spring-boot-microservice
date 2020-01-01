@@ -17,7 +17,7 @@ public class TestResource {
     }
 
     @GetMapping("/test/{data}")
-    public String test(@PathVariable String data){
+    public String test(@PathVariable String data) {
         return "Hi " + data;
     }
 

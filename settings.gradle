@@ -1,8 +1,7 @@
 rootProject.name = 'spring-boot-microservice'
 include 'limit-serv'
-//include ':limit-serv'
-//project(':limit-serv').projectDir = new File('limit-serv')
 include 'config-server'
 include 'currency-exchange-service'
 include 'currency-conversion-service'
+include 'eureka-naming-server'
 
