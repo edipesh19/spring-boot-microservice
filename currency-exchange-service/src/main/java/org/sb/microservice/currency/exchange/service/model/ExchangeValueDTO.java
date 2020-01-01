@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import java.math.BigDecimal;
 
 
-@Entity(name="exchange_value")
+@Entity(name = "exchange_value")
 @Builder(toBuilder = true)
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
@@ -23,9 +23,9 @@ public class ExchangeValueDTO {
     @Id
     private Long id;
 
-    @Column(name="currency_from")
+    @Column(name = "currency_from")
     private String from;
-    @Column(name="currency_to")
+    @Column(name = "currency_to")
     private String to;
     private BigDecimal factor;
     private int port;
