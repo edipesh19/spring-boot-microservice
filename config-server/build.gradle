@@ -4,6 +4,8 @@ plugins {
     id 'java'
 }
 
+apply from: "$rootDir/gradle/docker.gradle"
+
 group = 'org.sb.microservices'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
@@ -46,3 +48,5 @@ dependencyManagement {
 test {
     useJUnitPlatform()
 }
+processResources.dependsOn copyDockerFilesFromTemplate
+build.dependsOn dockerBuildImage
