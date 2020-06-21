@@ -14,9 +14,9 @@ def dockerRegistryUrl = getConfigurationProperty('DOCKER_REGISTRY_URL', 'docker.
 def dockerImageName = project.hasProperty('dockerImageName') ? project.ext.dockerImageName : project.name
 //def dockerServiceName = project.hasProperty('dockerServiceName') ? project.ext.dockerServiceName : project.name
 def dockerImageNameWithRepository = dockerRegistryUrl !=null ?
-        ((dockerRegistryUrl.length()>0) ? (dockerRegistryUrl + "/") : "") + dockerImageName : 'edipesh19/docker.io/'
+        ((dockerRegistryUrl.length()>0) ? (dockerRegistryUrl + "/") : "") + dockerImageName : 'edipesh19/' + dockerImageName
 def tagLatest = "latest"
-def dockerImageTagLocal = dockerImageName + ":" + tagLatest
+def dockerImageTagLocal = dockerImageNameWithRepository + ":" + tagLatest
 def template = "${project.rootDir}/common/template/docker"
 
 task dockerBuildImage(type: DockerBuildImage) {
@@ -32,6 +32,7 @@ task dockerTagImageLatest (type: DockerTagImage) {
     mustRunAfter dockerBuildImage
     targetImageId { dockerImageTagLocal }
     tag = tagLatest
+    println("dockerImageNameWithRepository = " + dockerImageNameWithRepository)
     repository = dockerImageNameWithRepository
     force = true
 }
