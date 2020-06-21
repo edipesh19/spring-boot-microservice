@@ -5,9 +5,9 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, dev ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, dev ]
 
 jobs:
   build:
@@ -24,39 +24,47 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-    - name: Upload artifacts config-server
-      run : echo Uploading artifacts for config-server
-    - uses: actions/upload-artifact@v1
-      with:
-        name: Package
-        path: config-server/build/libs
-    - name: Upload artifacts currency-conversion-service
-      run : echo Uploading artifacts for currency-conversion-service
-    - uses: actions/upload-artifact@v1
-      with:
-        name: Package
-        path: currency-conversion-service/build/libs
-    - name: Upload artifacts currency-exchange-service
-      run : echo Uploading artifacts for currency-exchange-service
-    - uses: actions/upload-artifact@v1
-      with:
-        name: Package
-        path: currency-exchange-service/build/libs
-    - name: Upload artifacts eureka-naming-server
-      run : echo Uploading artifacts for eureka-naming-server
-    - uses: actions/upload-artifact@v1
-      with:
-        name: Package
-        path: eureka-naming-server/build/libs
-    - name: Upload artifacts limit-serv
-      run : echo Uploading artifacts for limit-serv
-    - uses: actions/upload-artifact@v1
-      with:
-        name: Package
-        path:  limit-serv/build/libs
-    - name: Upload artifacts zuul-api-gateway-service
-      run : echo Uploading artifacts for zuul-api-gateway-service
-    - uses: actions/upload-artifact@v1
-      with:
-        name: Package
-        path: zuul-api-gateway-service/build/libs
+    - name: Docker login
+      env:
+        DOCKER_USER: ${{ secrets.DOCKER_USER }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+#     - name: Upload artifacts config-server
+#       run : echo Uploading artifacts for config-server
+#     - uses: actions/upload-artifact@v1
+#       with:
+#         name: Package
+#         path: config-server/build/libs
+#     - name: Upload artifacts currency-conversion-service
+#       run : echo Uploading artifacts for currency-conversion-service
+#     - uses: actions/upload-artifact@v1
+#       with:
+#         name: Package
+#         path: currency-conversion-service/build/libs
+#     - name: Upload artifacts currency-exchange-service
+#       run : echo Uploading artifacts for currency-exchange-service
+#     - uses: actions/upload-artifact@v1
+#       with:
+#         name: Package
+#         path: currency-exchange-service/build/libs
+#     - name: Upload artifacts eureka-naming-server
+#       run : echo Uploading artifacts for eureka-naming-server
+#     - uses: actions/upload-artifact@v1
+#       with:
+#         name: Package
+#         path: eureka-naming-server/build/libs
+#     - name: Upload artifacts limit-serv
+#       run : echo Uploading artifacts for limit-serv
+#     - uses: actions/upload-artifact@v1
+#       with:
+#         name: Package
+#         path:  limit-serv/build/libs
+#     - name: Upload artifacts zuul-api-gateway-service
+#       run : echo Uploading artifacts for zuul-api-gateway-service
+#     - uses: actions/upload-artifact@v1
+#       with:
+#         name: Package
+#         path: zuul-api-gateway-service/build/libs
+  
+
