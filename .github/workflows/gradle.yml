@@ -24,3 +24,39 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Upload artifacts
+      run : echo Uploading artifacts for config-server
+    - uses: actions/upload-artifact@v1
+      with:
+        name: Package
+        path: config-server/build/libs
+    - name: Upload artifacts
+      run : echo Uploading artifacts for currency-conversion-service
+    - uses: actions/upload-artifact@v1
+      with:
+        name: Package
+        path: currency-conversion-service/build/libs
+    - name: Upload artifacts
+      run : echo Uploading artifacts for currency-exchange-service
+    - uses: actions/upload-artifact@v1
+      with:
+        name: Package
+        path: currency-exchange-service/build/libs
+    - name: Upload artifacts
+      run : echo Uploading artifacts for eureka-naming-server
+    - uses: actions/upload-artifact@v1
+      with:
+        name: Package
+        path: eureka-naming-server/build/libs
+    - name: Upload artifacts
+      run : echo Uploading artifacts for  limit-serv
+    - uses: actions/upload-artifact@v1
+      with:
+        name: Package
+        path:  limit-serv/build/libs
+    - name: Upload artifacts
+      run : echo Uploading artifacts for zuul-api-gateway-service
+    - uses: actions/upload-artifact@v1
+      with:
+        name: Package
+        path: zuul-api-gateway-service/build/libs
