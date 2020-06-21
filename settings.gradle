@@ -1,3 +1,8 @@
 rootProject.name = 'spring-boot-microservice'
-include 'spring-boot-example'
+include 'limit-serv'
+include 'config-server'
+include 'currency-exchange-service'
+include 'currency-conversion-service'
+include 'eureka-naming-server'
+include 'zuul-api-gateway-service'
 
