@@ -1,0 +1,45 @@
+buildscript {
+    repositories {
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath 'com.bmuschko:gradle-docker-plugin:5.3.0'
+    }
+}
+
+apply plugin: com.bmuschko.gradle.docker.DockerRemoteApiPlugin
+import com.bmuschko.gradle.docker.tasks.image.*
+
+def dockerRegistryUrl = getConfigurationProperty('DOCKER_REGISTRY_URL', 'docker.registryUrl')
+def dockerImageName = project.hasProperty('dockerImageName') ? project.ext.dockerImageName : project.name
+//def dockerServiceName = project.hasProperty('dockerServiceName') ? project.ext.dockerServiceName : project.name
+def dockerImageNameWithRepository = dockerRegistryUrl !=null ?
+        ((dockerRegistryUrl.length()>0) ? (dockerRegistryUrl + "/") : "") + dockerImageName : 'edipesh19/docker.io/'
+def tagLatest = "latest"
+def dockerImageTagLocal = dockerImageName + ":" + tagLatest
+def template = "${project.rootDir}/common/template/docker"
+
+task dockerBuildImage(type: DockerBuildImage) {
+    inputDir = file("${buildDir}")
+    dockerFile = new File( buildDir, "Dockerfile" )
+    tags = [dockerImageTagLocal]
+    doFirst {
+        copyDockerFilesFromTemplate
+    }
+}
+
+task dockerTagImageLatest (type: DockerTagImage) {
+    mustRunAfter dockerBuildImage
+    targetImageId { dockerImageTagLocal }
+    tag = tagLatest
+    repository = dockerImageNameWithRepository
+    force = true
+}
+
+task copyDockerFilesFromTemplate (type: Copy) {
+    into buildDir
+    from template
+}
+String getConfigurationProperty(String envVar, String sysProp) {
+    System.getenv(envVar) ?: project.findProperty(sysProp)
+}
