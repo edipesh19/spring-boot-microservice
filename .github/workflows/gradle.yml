@@ -38,6 +38,7 @@ jobs:
         docker push edipesh19/currency-exchange-service:latest
         docker push edipesh19/currency-conversion-service:latest
         docker push edipesh19/config-server:latest
+        docker push edipesh19/demo:latest
 #    - name: Upload artifacts config-server
 #      run : echo Uploading artifacts for config-server
 #    - uses: actions/upload-artifact@v1
