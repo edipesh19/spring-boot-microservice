@@ -1,3 +1,3 @@
 FROM openjdk:8-jdk-alpine
 COPY ./libs /
-ENTRYPOINT ["java","-jar","/build/libs/*.jar"]
+ENTRYPOINT ["java","-jar","/libs/*.jar"]
